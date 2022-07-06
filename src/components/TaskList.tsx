@@ -40,7 +40,7 @@ export function TaskList() {
 
   function handleToggleTaskCompletion(id: number) {
     //Marca como concluido feito por mim
-    /*tasks.forEach(element => {
+    tasks.forEach(element => {
       if(element.id == id) {
         if(element.isComplete == false){
           element.isComplete = true
@@ -51,15 +51,15 @@ export function TaskList() {
         }
         setTasks([...tasks])
       }
-    });*/
+    });
 
-    //Como foi feito na correção vou deixar pq ficou mais estiloso
+    /*Como foi feito na correção vou deixar pq ficou mais estiloso
     const newtasks = tasks.map(task => task.id === id ? {
       ...task,
       isComplete: !task.isComplete
     } : task)
 
-    setTasks(newtasks)
+    setTasks(newtasks)*/
   }
 
   function handleRemoveTask(id: number) {
