@@ -15,15 +15,61 @@ export function TaskList() {
   const [newTaskTitle, setNewTaskTitle] = useState('');
 
   function handleCreateNewTask() {
-    // Crie uma nova task com um id random, não permita criar caso o título seja vazio.
+      
+      if(!newTaskTitle) return;
+
+      //Gera id aleatório
+      const randId = Math.floor(Date.now() * Math.random())
+      //Cria um item do tipo task
+      let newTask: Task = {
+        "id": +randId,
+        "title": newTaskTitle,
+        "isComplete": false,
+      }
+
+        //Atualiza o estado da lista de tasks
+        setTasks([...tasks,newTask])
+        //Reseta o texto dentro do input
+        setNewTaskTitle('');
+        /* Feito na correção 
+        setTasks(oldState => [...oldState,newTask]);
+        setNewTaskTitle(''); -> Serve para resetar o Todo
+        */
+      
   }
 
   function handleToggleTaskCompletion(id: number) {
-    // Altere entre `true` ou `false` o campo `isComplete` de uma task com dado ID
+    //Marca como concluido feito por mim
+    /*tasks.forEach(element => {
+      if(element.id == id) {
+        if(element.isComplete == false){
+          element.isComplete = true
+        }else {
+          if(element.isComplete == true){
+            element.isComplete = false
+          }
+        }
+        setTasks([...tasks])
+      }
+    });*/
+
+    //Como foi feito na correção vou deixar pq ficou mais estiloso
+    const newtasks = tasks.map(task => task.id === id ? {
+      ...task,
+      isComplete: !task.isComplete
+    } : task)
+
+    setTasks(newtasks)
   }
 
   function handleRemoveTask(id: number) {
-    // Remova uma task da listagem pelo ID
+
+    /* Como foi feito na correção
+    const filteredtasks = tasks.filter(e => e.id != id)
+    */
+
+    //HAHAHAHHA FIZ SEM A CORREÇÃO
+    setTasks([...tasks.filter((element) => element.id != id)])
   }
 
   return (
